@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-0tnmu=0&gp8laogn_a@q*q6hxf)p2c3gvja%hzwe#p$i4#z8yx
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://homyhut-houserent-backend.onrender.com','https://*.127.0.0.1']
 
 CORS_ALLOW_ALL_ORIGINS = True
 
