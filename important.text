@@ -1,20 +1,51 @@
-GET /favorites/favorites/ - List user's favorites
+House Rent Site (HomyHut)
 
-POST /favorites/favorites/ - Create new favorite
+                                	Final Assignment
 
-DELETE /favorites/favorites/{id}/ - Remove favorite
-GET /user/reviews/ - List user's reviews
+Account app : 
+	All user: 	    https://homyhut-houserent-backend.onrender.com/user/all-users/
+	Account view:   https://homyhut-houserent-backend.onrender.com/user/account/
+	Register: 	 	https://homyhut-houserent-backend.onrender.com/user/register/
+	Login:  		https://homyhut-houserent-backend.onrender.com/user/login/
+	Logout: 		https://homyhut-houserent-backend.onrender.com/user/logout/
+	User Profile  : https://homyhut-houserent-backend.onrender.com/user/profile/
 
-POST /user/reviews/ - Create new review
 
-PUT /user/reviews/{id}/ - Update review
+Admin password:
+{
+  "username":"admin",
+  "password":"123"
+}
 
-DELETE /user/reviews/{id}/ - Delete review
 
-user/login/ - Login
-user/register/ - Register
-user/
-api/rent
-api/rent/
-api/rent/rent-ads/  
-api/rent/rent-requests/
+{
+  "username":"Umair",
+  "password":"naim1234"
+}
+
+
+
+
+
+HomyHut House Rent : 
+
+	All-Ads: 		        https://homyhut-houserent-backend.onrender.com/api/rent/rent-ads/
+	Ad details:		        https://homyhut-houserent-backend.onrender.com/api/rent/rent-ads/8/
+    Rent api root:          https://homyhut-houserent-backend.onrender.com/api/rent/
+	All-Review: 		    https://homyhut-houserent-backend.onrender.com/user/reviews/
+	Add Review : 		    https://homyhut-houserent-backend.onrender.com/user/reviews/
+	Review update,delete :  https://homyhut-houserent-backend.onrender.com/user/reviews/1/
+    Favorites :             https://homyhut-houserent-backend.onrender.com/favorites/
+                            DELETE /favorites/favorites/{id}/ - Remove favorite
+                            POST /favorites/favorites/ - Create new favorite
+                            GET /favorites/favorites/ - List user's favorites
+
+
+Live 1 : https://homyhut-houserent-backend.onrender.com
+
+
+
+
+
+
+
