@@ -1,0 +1,20 @@
+GET /favorites/favorites/ - List user's favorites
+
+POST /favorites/favorites/ - Create new favorite
+
+DELETE /favorites/favorites/{id}/ - Remove favorite
+GET /user/reviews/ - List user's reviews
+
+POST /user/reviews/ - Create new review
+
+PUT /user/reviews/{id}/ - Update review
+
+DELETE /user/reviews/{id}/ - Delete review
+
+user/login/ - Login
+user/register/ - Register
+user/
+api/rent
+api/rent/
+api/rent/rent-ads/  
+api/rent/rent-requests/
