@@ -35,7 +35,7 @@ class UserRegistrationSerializerViewSet(APIView):
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
 
-            confirm_link = f"http://127.0.0.1:8000/api/user/activate/{uid}/{token}/"
+            confirm_link = f"https://homyhut-houserent-backend.onrender.com/api/user/activate/{uid}/{token}/"
 
             email_subject = "Confirm Your Email"
             email_body = render_to_string(
