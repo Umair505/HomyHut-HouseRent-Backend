@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 from django.db.models import Q
 from .models import RentAdvertisement, RentRequest
 from .serializers import RentAdvertisementSerializer, RentRequestSerializer
-from .permissions import IsAdminOrReadOnly
+from .permissions import IsAdminOrReadOnly,IsOwnerOrAdmin
 
 class RentAdvertisementViewSet(viewsets.ModelViewSet):
     queryset = RentAdvertisement.objects.all()
@@ -15,33 +15,49 @@ class RentAdvertisementViewSet(viewsets.ModelViewSet):
     search_fields = ['title', 'location', 'price', 'description']
 
     def get_permissions(self):
+        # Allow authenticated users to create posts
         if self.action == 'create':
             return [permissions.IsAuthenticated()]
+        
+        # Allow owners to update/delete their own posts or admins to perform any action
+        if self.action in ['update', 'partial_update', 'destroy']:
+            return [permissions.IsAuthenticated(), IsOwnerOrAdmin()]
+        
+        # Allow read-only access for all other actions
         return [IsAdminOrReadOnly()]
 
     def perform_create(self, serializer):
+        # Automatically assign the logged-in user as the owner of the advertisement
         serializer.save(user=self.request.user)
 
     def get_queryset(self):
+        # Non-admin users can only see approved advertisements
         if not self.request.user.is_staff:
             return RentAdvertisement.objects.filter(status='approved')
+        
+        # Admins can see all advertisements
         return RentAdvertisement.objects.all()
 
     @action(detail=True, methods=['post'], permission_classes=[permissions.IsAdminUser])
     def approve(self, request, pk=None):
+        """
+        Admin-only action to approve an advertisement.
+        """
         ad = self.get_object()
         ad.status = "approved"
-        ad.is_available = True  # Ensure ad becomes available when approved
+        ad.is_available = True  # Ensure the ad becomes available when approved
         ad.save()
         return Response({"message": "Advertisement approved successfully"})
 
     @action(detail=True, methods=['post'], permission_classes=[permissions.IsAdminUser])
     def reject(self, request, pk=None):
+        """
+        Admin-only action to reject an advertisement.
+        """
         ad = self.get_object()
         ad.status = "rejected"
         ad.save()
         return Response({"message": "Advertisement rejected"})
-
 class RentRequestViewSet(viewsets.ModelViewSet):
     serializer_class = RentRequestSerializer
     permission_classes = [permissions.IsAuthenticated]
